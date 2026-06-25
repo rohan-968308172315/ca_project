@@ -1,0 +1,1335 @@
+{% include 'navbar.html' %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+<style>
+	/* ----- MAIN SECTION (white background, no extra tags) ----- */
+	.trust-section {
+		max-width: 1200px;
+		width: 100%;
+		margin: 60px auto 0;
+		border-radius: 2rem;
+		transition: all 0.2s ease;
+	}
+
+	/* section header (optional, but adds clarity) */
+	.section-header {
+		text-align: center;
+		margin-bottom: 2.8rem;
+	}
+
+	.section-header h2 {
+		font-size: 33px;
+		font-weight: 500;
+		letter-spacing: -0.02em;
+		color: #1e2b2f;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.section-header h2 i {
+		color: #e9a514;
+		/* orange accent */
+		font-size: 2rem;
+	}
+
+	.section-header .subhead {
+		font-size: 18px;
+		color: #4a5a5e;
+		margin-top: 0.3rem;
+		display: inline-block;
+		padding-bottom: 0.3rem;
+	}
+
+	/* ----- CARDS LAYOUT (grid) ----- */
+	.cards-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1.8rem;
+		margin-top: 0.5rem;
+	}
+
+	/* individual card */
+	.trust-card {
+		background: #ffffff;
+		border-radius: 1.8rem;
+		padding: 2rem 1.2rem 1.8rem;
+		text-align: center;
+		box-shadow: 0 8px 24px rgba(0, 30, 20, 0.04);
+		border: 1px solid #eef3f0;
+		transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.2s;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.trust-card:hover {
+		transform: translateY(-6px);
+		box-shadow: 0 18px 36px -8px rgba(0, 50, 30, 0.08);
+		border-color: #dbe8e0;
+	}
+
+	/* card icon - circle with brand colors */
+	.card-icon {
+		width: 74px;
+		height: 74px;
+		background: #f0f7f2;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 1.2rem;
+		font-size: 2.2rem;
+		color: #1f3d35;
+		transition: background 0.2s;
+	}
+
+	/* each card gets a distinct accent color */
+	.trust-card:nth-child(1) .card-icon {
+		background: #e9a514;
+		color: #e3f0e6;
+	}
+
+	.trust-card:nth-child(2) .card-icon {
+		background: #e9a514;
+		color: #deece8;
+	}
+
+	.trust-card:nth-child(3) .card-icon {
+		background: #e9a514;
+		color: #deece8;
+	}
+
+	.trust-card:nth-child(4) .card-icon {
+		background: #e9a514;
+		color: #deece8;
+	}
+
+	/* card number / main stat */
+	.stat-number {
+		font-size: 2.6rem;
+		font-weight: 700;
+		color: black;
+		line-height: 1.1;
+		letter-spacing: -0.02em;
+		margin-bottom: 0.25rem;
+	}
+
+	.stat-number .small-unit {
+		font-size: 1.3rem;
+		font-weight: 500;
+		color: #3d5a4b;
+		margin-left: 2px;
+	}
+
+	.stat-label {
+		font-size: 1rem;
+		font-weight: 500;
+		color: #c95f1a;
+		letter-spacing: 0.02em;
+		background: #fdf0e7;
+		padding: 0.3rem 1.2rem;
+		border-radius: 40px;
+		display: inline-block;
+		margin-top: 0.3rem;
+		border: 1px solid #c95f1a;
+	}
+
+	/* orange & green accent for specific cards */
+
+
+	.trust-card:nth-child(2) .stat-label {
+		background: #fdf0e7;
+		border-color: #c95f1a;
+		color: #c95f1a;
+	}
+
+	.trust-card:nth-child(3) .stat-label {
+		background: #fdf0e7;
+		border-color: #c95f1a;
+		color: #c95f1a;
+	}
+
+	/* small badge (like "ICAI Member" special) */
+	.badge-icai {
+		background: #e9a514;
+		color: white;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		padding: 0.25rem 1rem;
+		border-radius: 40px;
+		display: inline-block;
+		margin-bottom: 0.75rem;
+		text-transform: uppercase;
+		border: 1px solid #1f3d35;
+	}
+
+	.trust-card:nth-child(1) .badge-icai {
+		background: #e9a514;
+		border-color: #e9a514;
+	}
+
+	/* small description line */
+	.card-desc {
+		font-size: 0.9rem;
+		color: #4a5f55;
+		margin-top: 0.6rem;
+		font-weight: 400;
+		opacity: 0.8;
+	}
+
+	/* ----- RESPONSIVE (mobile first) ----- */
+	@media screen and (max-width: 992px) {
+		.cards-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1.5rem;
+		}
+
+		.trust-section {
+			padding: 2rem 1.2rem;
+		}
+
+		.section-header h2 {
+			font-size: 1.8rem;
+		}
+	}
+
+	@media screen and (max-width: 540px) {
+		.cards-grid {
+			grid-template-columns: 1fr 1fr;
+			gap: 1rem;
+		}
+
+		.trust-card {
+			padding: 1.5rem 0.8rem;
+		}
+
+		.stat-number {
+			font-size: 2rem;
+		}
+
+		.card-icon {
+			width: 60px;
+			height: 60px;
+			font-size: 1.8rem;
+		}
+
+		.section-header h2 {
+			font-size: 1.6rem;
+		}
+
+		.trust-section {
+			padding: 1.5rem 0.8rem;
+			border-radius: 1.5rem;
+		}
+	}
+
+	@media screen and (max-width: 400px) {
+		.cards-grid {
+			grid-template-columns: 1fr;
+			gap: 1.2rem;
+		}
+
+		.trust-card {
+			max-width: 280px;
+			margin: 0 auto;
+			width: 100%;
+		}
+	}
+
+	/* extra touch: orange underline for header */
+	.accent-line {
+		width: 50px;
+		height: 3px;
+		background: #e9a514;
+		margin: 0.5rem auto 0;
+		border-radius: 4px;
+	}
+
+	/* small inline black/white icons (optional) */
+	.fa-regular,
+	.fas,
+	.far {
+		filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.02));
+	}
+
+	/* maintain pure white section background */
+	.trust-section,
+	.trust-card {
+		background: #ffffff;
+	}
+
+	/* orange accent on hover (subtle) */
+	.trust-card:hover .card-icon {
+		background: #0c7a40;
+
+	}
+
+	.trust-card:nth-child(1):hover .card-icon {
+		background: #0c7a40;
+	}
+
+	.trust-card:nth-child(2):hover .card-icon {
+		background: #0c7a40;
+	}
+
+	.trust-card:nth-child(3):hover .card-icon {
+		background: #0c7a40;
+	}
+
+	.trust-card:nth-child(4):hover .card-icon {
+		background: #0c7a40;
+	}
+</style>
+
+<div id="slider" class="banner banner-slider slider-large carousel slide carousel-fade">
+	<!-- Wrapper for Slides -->
+	<div class="carousel-inner">
+		<div class="item active">
+			<!-- Set the first background image using inline CSS below. -->
+			<div class="fill" style="background-image:url('static/image/slider-lg-a.jpg');">
+				<div class="banner-content">
+					<div class="container">
+						<div class="row">
+							<div class="banner-text al-left pos-left light">
+								<h2>Professional Tax & Compliance Solutions<strong>.</strong></h2>
+								<h4>Simplifying Finance, Maximizing Growth</h4>
+								<p>Expert assistance for Income Tax, GST, Accounting, Audits, and Business Compliance
+									tailored to individuals, startups, and growing businesses.</p>
+								<div class="quote-btn">
+									<a href="#" class="btn">Book Consultation Button</a>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="item">
+			<!-- Set the second background image using inline CSS below. -->
+			<div class="fill" style="background-image:url('static/image/slider-lg-b.jpg');">
+				<div class="banner-content">
+					<div class="container">
+						<div class="row">
+							<div class="banner-text al-left pos-left light">
+								<h2>Your Trusted Chartered Accountant Partner<strong>.</strong></h2>
+								<h4>Accuracy, Compliance, Confidence</h4>
+								<p>From tax planning and return filing to audits and registrations, we provide reliable
+									financial solutions that help your business stay compliant and grow confidently.</p>
+								<div class="quote-btn">
+									<a href="#" class="btn">Book Consultation Button</a>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Left and right controls -->
+	<a class="left carousel-control" href="#slider" role="button" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="right carousel-control" href="#slider" role="button" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div>
+
+
+
+
+
+
+
+<!-- ===== SECTION : TRUST INDICATORS ===== -->
+<section class="trust-section">
+	<div class="section-header">
+		<h2>Trust Indicators</h2>
+		<br>
+		<div class="subhead">backed by experience &amp; excellence</div>
+	</div>
+
+	<!-- CARDS GRID : 4 indicators -->
+	<div class="cards-grid">
+
+		<!-- 1. ICAI Member -->
+		<div class="trust-card">
+			<div class="card-icon">
+				<i class="fas fa-user-graduate"></i>
+			</div>
+			<span class="badge-icai"><i class="fas fa-check-circle" style="margin-right: 6px;"></i> ICAI Member</span>
+			<div class="stat-number" style="font-size: 1.8rem; margin-top: 0.2rem;">FCA · DISA</div>
+			<div class="stat-label" style="background: #fdf0e7;color:#c95f1a ; ">Peer reviewed</div>
+			<div class="card-desc"><i class="fas fa-certificate" style="color: #e9a514; margin-right: 4px;"></i>
+				Institute of Chartered Accountants</div>
+		</div>
+
+		<!-- 2. Years Experience (15+) -->
+		<div class="trust-card">
+			<div class="card-icon">
+				<i class="fas fa-calendar-alt"></i>
+			</div>
+			<div class="stat-number">15 +</div>
+			<div class="stat-label"><i class="fas fa-clock" style="margin-right: 6px; color: #c95f1a;"></i> Years
+				Experience</div>
+			<div class="card-desc">advisory · audit · tax</div>
+		</div>
+
+		<!-- 3. Clients Served (1200+) -->
+		<div class="trust-card">
+			<div class="card-icon">
+				<i class="fas fa-users"></i>
+			</div>
+			<div class="stat-number">1.2K +</div>
+			<div class="stat-label"><i class="fas fa-handshake" style="margin-right: 6px; color: #c95f1a;"></i> Clients
+				Served</div>
+			<div class="card-desc">startups · SME · corporates</div>
+		</div>
+
+		<!-- 4. Returns Filed (8K+) -->
+		<div class="trust-card">
+			<div class="card-icon">
+				<i class="fas fa-file-invoice"></i>
+			</div>
+			<div class="stat-number">8K +</div>
+			<div class="stat-label"><i class="fas fa-check-double" style="margin-right: 6px; color: #c95f1a;"></i>
+				Returns Filed</div>
+			<div class="card-desc">income tax · GST · TDS</div>
+		</div>
+
+	</div> <!-- end cards-grid -->
+
+
+</section>
+<div class="section section-services section-pad">
+	<div class="container">
+		<div class="content row">
+
+			<div class="wide-md center">
+				<h2 class="heading-lead">Services</h2>
+				<p>Cepsum dolor sit amet consectetur to adipiscing elit, sed dot eiusmod tempor incididunt labore et
+					dolore magna aliqua. Veniam quis nostrud exercitation ullamco laboris.</p>
+			</div>
+			<!-- Feature Row  -->
+			<div class="feature-row feature-service-row row">
+				<div class="col-md-4 col-sm-6 even first">
+					<!-- feature box -->
+					<div class="feature boxed">
+						<a href="#">
+							<div class="fbox-photo">
+								<img src="static/image/photo-sm-a.jpg" alt="">
+							</div>
+						</a>
+						<div class="fbox-content">
+							<h3 class="lead"><a href="#">Investment Planning</a></h3>
+							<p>Lorem ipsum dolor sit amet, conse ctetur adip isicing elit, sed do eius mod tempor
+								incididunt fuga platea ut labore et.</p>
+							<p><a href="#" class="btn-link link-arrow-sm">Learn More</a></p>
+						</div>
+					</div>
+					<!-- End Feature box -->
+				</div>
+				<div class="col-md-4 col-sm-6 odd">
+					<!-- feature box -->
+					<div class="feature boxed">
+						<a href="#">
+							<div class="fbox-photo">
+								<img src="static/image/photo-sm-b.jpg" alt="">
+							</div>
+						</a>
+						<div class="fbox-content">
+							<h3 class="lead"><a href="#">Financial Planning</a></h3>
+							<p>Lorem ipsum dolor sit amet, conse ctetur adip isicing elit, sed do eius mod tempor
+								incididunt fuga platea ut labore et.</p>
+							<p><a href="#" class="btn-link link-arrow-sm">Learn More</a></p>
+						</div>
+					</div>
+					<!-- End Feature box -->
+				</div>
+				<div class="col-md-4 col-sm-6 even">
+					<!-- feature box -->
+					<div class="feature boxed">
+						<a href="#">
+							<div class="fbox-photo">
+								<img src="static/image/photo-sm-c.jpg" alt="">
+							</div>
+						</a>
+						<div class="fbox-content">
+							<h3 class="lead"><a href="#">Investments Management</a></h3>
+							<p>Lorem ipsum dolor sit amet, conse ctetur adip isicing elit, sed do eius mod tempor
+								incididunt fuga platea ut labore et.</p>
+							<p><a href="#" class="btn-link link-arrow-sm">Learn More</a></p>
+						</div>
+					</div>
+					<!-- End Featur box -->
+				</div>
+				<div class="col-md-4 col-sm-6 odd first">
+					<!-- featured box -->
+					<div class="feature boxed">
+						<a href="#">
+							<div class="fbox-photo">
+								<img src="static/image/photo-sm-d.jpg" alt="">
+							</div>
+						</a>
+						<div class="fbox-content">
+							<h3 class="lead"><a href="#">Insurance Consulting</a></h3>
+							<p>Lorem ipsum dolor sit amet, conse ctetur adip isicing elit, sed do eius mod tempor
+								incididunt fuga platea ut labore et.</p>
+							<p><a href="#" class="btn-link link-arrow-sm">Learn More</a></p>
+						</div>
+					</div>
+					<!-- End Feature box -->
+				</div>
+				<div class="col-md-4 col-sm-6 odd">
+					<!-- featured box -->
+					<div class="feature boxed">
+						<a href="#">
+							<div class="fbox-photo">
+								<img src="static/image/photo-sm-e.jpg" alt="">
+							</div>
+						</a>
+						<div class="fbox-content">
+							<h3 class="lead"><a href="#">Taxes Consulting</a></h3>
+							<p>Lorem ipsum dolor sit amet, conse ctetur adip isicing elit, sed do eius mod tempor
+								incididunt fuga platea ut labore et.</p>
+							<p><a href="#" class="btn-link link-arrow-sm">Learn More</a></p>
+						</div>
+					</div>
+					<!-- End Feature box -->
+				</div>
+				<div class="col-md-4 col-sm-6 odd">
+					<!-- featured box -->
+					<div class="feature boxed">
+						<a href="#">
+							<div class="fbox-photo">
+								<img src="static/image/photo-sm-f.jpg" alt="">
+							</div>
+						</a>
+						<div class="fbox-content">
+							<h3 class="lead"><a href="#">Business Audit</a></h3>
+							<p>Lorem ipsum dolor sit amet, conse ctetur adip isicing elit, sed do eius mod tempor
+								incididunt fuga platea ut labore et.</p>
+							<p><a href="#" class="btn-link link-arrow-sm">Learn More</a></p>
+						</div>
+					</div>
+					<!-- End Feature box -->
+				</div>
+			</div>
+			<!-- Feture Row  #end -->
+
+		</div>
+	</div>
+</div>
+<!-- Content -->
+<style>
+	.section-pad {
+		padding: 60px 0;
+	}
+
+	.section-content {
+		background: #ffffff;
+	}
+
+	.heading-section {
+		font-size: 32px;
+		font-weight: 600;
+		color: #1e2b2f;
+		margin-top: 0;
+		margin-bottom: 20px;
+		text-align: center;
+		position: relative;
+		padding-bottom: 14px;
+	}
+
+
+	.content p {
+		color: #4a5a5e;
+		line-height: 1.7;
+		margin-bottom: 16px;
+		font-size: 15px;
+	}
+
+	.row-vm {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	.no-round {
+		border-radius: 0;
+		width: 100%;
+		height: auto;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+		border: 1px solid #eef3f0;
+	}
+
+	/* Mission & Vision boxes */
+	.mv-block {
+		background: #f7fbf9;
+		padding: 18px 22px;
+		border-left: 4px solid #1d6b3b;
+		margin-bottom: 14px;
+		border-radius: 0 8px 8px 0;
+		transition: 0.2s;
+	}
+
+	.mv-block.vision {
+		border-left-color: #e87b2d;
+		background: #fdf8f4;
+	}
+
+	.mv-block h4 {
+		font-size: 16px;
+		font-weight: 600;
+		margin: 0 0 4px 0;
+		color: #1e2b2f;
+	}
+
+	.mv-block h4 i {
+		margin-right: 10px;
+		color: #1d6b3b;
+		width: 20px;
+	}
+
+	.mv-block.vision h4 i {
+		color: #d96c1e;
+	}
+
+	.mv-block p {
+		margin: 0;
+		font-size: 14px;
+		color: #3f5a4e;
+		line-height: 1.5;
+	}
+
+	/* Read More button */
+	.btn-readmore {
+		background: #e9a514;
+		color: #fff;
+		border: none;
+		padding: 10px 32px;
+		font-size: 15px;
+		font-weight: 500;
+		border-radius: 40px;
+		letter-spacing: 0.3px;
+		transition: all 0.25s ease;
+		box-shadow: 0 4px 8px rgba(0, 30, 20, 0.06);
+		margin-top: 8px;
+		display: inline-block;
+		text-decoration: none;
+	}
+
+	.btn-readmore i {
+		margin-left: 8px;
+		transition: 0.2s;
+	}
+
+	.btn-readmore:hover,
+	.btn-readmore:focus {
+		background: #e87b2d;
+		color: #fff;
+		box-shadow: 0 8px 18px rgba(232, 123, 45, 0.2);
+		transform: translateY(-2px);
+		text-decoration: none;
+	}
+
+	.btn-readmore:hover i {
+		transform: translateX(4px);
+	}
+
+	/* Responsive tweaks for mobile */
+	@media (max-width: 991px) {
+		.row-vm {
+			display: block;
+		}
+
+		.col-md-6.res-m-bttm {
+			margin-bottom: 30px;
+		}
+
+		.col-md-5.col-md-offset-1 {
+			margin-left: 0;
+			width: 100%;
+		}
+
+		.heading-section {
+			font-size: 28px;
+		}
+
+		.section-pad {
+			padding: 40px 0;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.heading-section {
+			font-size: 24px;
+		}
+
+		.mv-block {
+			padding: 14px 16px;
+		}
+
+		.btn-readmore {
+			width: 100%;
+			text-align: center;
+		}
+	}
+
+	/* Keep white background for section */
+	.section-content {
+		background: #ffffff;
+	}
+
+	/* small extra spacing */
+	.content .row.row-vm {
+		margin-top: 6px;
+	}
+
+	.col-md-offset-1 {
+		margin-left: 8.33333333%;
+	}
+
+	/* image container */
+	.img-wrapper {
+		position: relative;
+	}
+
+	.img-wrapper .no-round {
+		display: block;
+	}
+
+	/* small badge (optional) but kept clean */
+	.badge-firm {
+		display: inline-block;
+		background: #e87b2d10;
+		color: #1f3d35;
+		font-size: 12px;
+		padding: 2px 14px;
+		border-radius: 30px;
+		border: 1px solid #e87b2d30;
+		margin-bottom: 10px;
+	}
+</style>
+<!-- ============================================================ -->
+<!-- SECTION 6 : ABOUT FIRM PREVIEW (left image + right content)   -->
+<!-- ============================================================ -->
+<div class="section section-content section-pad">
+	<div class="container">
+
+		<div class="content row">
+
+			<!-- ROW with vertical-middle alignment -->
+			<div class="row row-vm">
+
+				<!-- LEFT: Firm Image -->
+				<div class="col-md-6 res-m-bttm">
+					<div class="img-wrapper">
+						<img class="no-round" src="static/image/photo-home-a.jpg" />
+						<!-- optional small label (just for design) -->
+						<span class="badge-firm" style="margin-top: 10px; display: inline-block;">
+							<i class="fa fa-building-o"></i> 30+ years legacy
+						</span>
+					</div>
+				</div>
+
+				<!-- RIGHT: About Content + Mission + Vision + Button -->
+				<div class="col-md-5 col-md-offset-1">
+
+					<!-- About Content -->
+					<h2 class="heading-section">About Firm</h2>
+					<p>
+						<strong>Finance Corp</strong> – we provide financial consulting &amp; advisory
+						services with a legacy of 30+ years. We combine deep domain expertise with
+						a client-first approach.
+					</p>
+					<p>
+						Accumsan est in tempus etos ullamcorper sem quam suscipit lacus maecenas tortor.
+						Suspendisse gravida ornare non mattis velit rutrum modest sed do eiusmod tempor
+						incididunt ut labore et dolore.
+					</p>
+					<p>
+						We have one of the philo sophia nec mei maiorum appell antur. Orci varius natoque
+						penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+					</p>
+
+					<!-- Mission Block -->
+					<div class="mv-block">
+						<h4><i class="fa fa-bullseye"></i> Mission</h4>
+						<p>Empower businesses with transparent financial strategies, enabling sustainable
+							growth and long-term value creation.</p>
+					</div>
+
+					<!-- Vision Block -->
+					<div class="mv-block vision">
+						<h4><i class="fa fa-eye"></i> Vision</h4>
+						<p>To be the most trusted financial partner, recognized for integrity, innovation,
+							and unwavering client commitment.</p>
+					</div>
+
+					<!-- Button: Read More -->
+					<a href="#" class="btn-readmore">
+						Read More <i class="fa fa-arrow-right"></i>
+					</a>
+
+				</div> <!-- /right column -->
+
+			</div> <!-- /row-vm -->
+
+		</div> <!-- /content -->
+
+	</div> <!-- /container -->
+</div> <!-- /section -->
+
+<!-- Content -->
+<style>
+	/* ----- base & reset ----- */
+
+
+	/* ----- section styling (white background, but we keep .bg-light) ----- */
+	.section-contents {
+		padding: 60px 0;
+		position: relative;
+	}
+
+	.bg-light {
+		background: #ffffff;
+	}
+
+	.heading-sm-lead {
+		font-size: 14px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: #e87b2d;
+		text-align: center;
+		margin: 0 0 6px 0;
+	}
+
+	.heading-section {
+		font-size: 34px;
+		font-weight: 600;
+		color: #1e2b2f;
+		text-align: center;
+		margin: 0 0 12px 0;
+		padding-bottom: 16px;
+		position: relative;
+	}
+
+	/* feature cards grid */
+	.feature-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 28px 24px;
+		margin-top: 20px;
+	}
+
+	.feature-card {
+		background: #ffffff;
+		border-radius: 18px;
+		padding: 28px 20px 24px;
+		box-shadow: 0 6px 20px rgba(0, 30, 20, 0.04);
+		border: 1px solid #ebf2ee;
+		transition: all 0.25s ease;
+		text-align: center;
+		position: relative;
+	}
+
+	.feature-card:hover {
+		transform: translateY(-6px);
+		box-shadow: 0 18px 36px -8px rgba(0, 40, 30, 0.08);
+		border-color: #d4e4db;
+	}
+
+	/* icon circle */
+	.icon-box {
+		width: 72px;
+		height: 72px;
+		background: #f2f8f4;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0 auto 16px;
+		font-size: 28px;
+		color: #1d6b3b;
+		transition: 0.2s;
+	}
+
+	.feature-card:hover .icon-box {
+		background: #e7f1ea;
+	}
+
+
+	.feature-card h4 {
+		font-size: 18px;
+		font-weight: 600;
+		color: #1e2b2f;
+		margin: 4px 0 10px;
+	}
+
+	.feature-card p {
+		font-size: 14px;
+		color: #4a5a5e;
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	/* optional small badge on card */
+	.feature-number {
+		position: absolute;
+		top: -8px;
+		right: 12px;
+		background: #1d6b3b;
+		color: #fff;
+		font-size: 11px;
+		font-weight: 700;
+		width: 26px;
+		height: 26px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0.7;
+	}
+
+	/* responsive */
+	@media (max-width: 992px) {
+		.feature-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 20px;
+		}
+
+		.heading-section {
+			font-size: 28px;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.feature-grid {
+			grid-template-columns: 1fr;
+			gap: 18px;
+		}
+
+		.section-contents {
+			padding: 40px 0;
+		}
+
+		.heading-section {
+			font-size: 24px;
+		}
+
+		.feature-card {
+			padding: 22px 16px;
+		}
+
+		.icon-box {
+			width: 64px;
+			height: 64px;
+			font-size: 24px;
+		}
+	}
+
+	/* keep background white (bg-light is white) */
+	.bg-light {
+		background: #ffffff;
+	}
+
+	/* container adjustment */
+	.container {
+		max-width: 1200px;
+	}
+
+
+	/* extra: lead text */
+	.lead-text {
+		font-size: 16px;
+		color: #3f5a4e;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
+	/* small orange divider under heading */
+	.heading-section .accent-dot {
+		color: #e87b2d;
+		font-weight: 400;
+	}
+</style>
+
+
+
+
+
+<div class="section section-contents section-pad bg-light">
+	<div class="container">
+
+		<!-- section header -->
+		<div class="row">
+			<div class="col-md-12">
+				<h5 class="heading-sm-lead"><i class="fa fa-check-circle-o" style="margin-right: 6px;"></i> Why Choose
+					Us</h5>
+				<h2 class="heading-section">
+					Built on Trust &amp; Excellence
+					<span
+						style="display: block; font-size: 16px; font-weight: 400; color: #4a5a5e; margin-top: 4px; padding-bottom: 0;">
+						<i class="fa fa-quote-left" style="color: #e87b2d; opacity: 0.5;"></i>
+						We deliver more than numbers — we deliver confidence
+					</span>
+				</h2>
+				<p class="lead-text" style="margin-top: 8px;">
+					With decades of experience, we combine technical mastery with a human touch. <br>
+					Here’s why our clients trust us with their financial journey.
+				</p>
+			</div>
+		</div>
+
+		<!-- 6 FEATURE CARDS (grid) -->
+		<div class="feature-grid">
+
+			<!-- 1. Professional Expertise -->
+			<div class="feature-card">
+				<span class="feature-number">1</span>
+				<div class="icon-box"><i class="fa fa-graduation-cap"></i></div>
+				<h4>Professional Expertise</h4>
+				<p>Deep domain knowledge across tax, audit, and advisory — backed by continuous learning and industry
+					insight.</p>
+			</div>
+
+			<!-- 2. Personalized Attention -->
+			<div class="feature-card">
+				<span class="feature-number">2</span>
+				<div class="icon-box"><i class="fa fa-user-circle"></i></div>
+				<h4>Personalized Attention</h4>
+				<p>We treat every client as a partner, crafting bespoke solutions that align with your unique goals and
+					challenges.</p>
+			</div>
+
+			<!-- 3. Timely Delivery -->
+			<div class="feature-card">
+				<span class="feature-number">3</span>
+				<div class="icon-box"><i class="fa fa-clock-o"></i></div>
+				<h4>Timely Delivery</h4>
+				<p>We respect your time. Our streamlined processes ensure that every deliverable meets deadlines without
+					compromise.</p>
+			</div>
+
+			<!-- 4. Affordable Fees -->
+			<div class="feature-card">
+				<span class="feature-number">4</span>
+				<div class="icon-box"><i class="fa fa-credit-card"></i></div>
+				<h4>Affordable Fees</h4>
+				<p>Transparent, value-based pricing that delivers exceptional service without stretching your budget.
+				</p>
+			</div>
+
+			<!-- 5. Compliance Support -->
+			<div class="feature-card">
+				<span class="feature-number">5</span>
+				<div class="icon-box"><i class="fa fa-shield"></i></div>
+				<h4>Compliance Support</h4>
+				<p>Stay ahead of regulatory changes with our proactive compliance framework — from GST to ROC filings.
+				</p>
+			</div>
+
+			<!-- 6. Transparent Communication -->
+			<div class="feature-card">
+				<span class="feature-number">6</span>
+				<div class="icon-box"><i class="fa fa-comments-o"></i></div>
+				<h4>Transparent Communication</h4>
+				<p>We believe in open dialogue. Regular updates, clear reports, and honest advice build long-lasting
+					relationships.</p>
+			</div>
+
+		</div> <!-- /feature-grid -->
+
+		<!-- optional footer note (align with your style) -->
+		<div class="row" style="margin-top: 32px;">
+			<div class="col-md-12 text-center">
+				<span
+					style="background: #f7fbf9; padding: 8px 28px; border-radius: 40px; color: #1f3d35; border: 1px solid #dce8e1; font-size: 14px; display: inline-block;">
+					<i class="fa fa-handshake-o" style="color: #e87b2d; margin-right: 8px;"></i>
+					Join 1200+ satisfied clients who choose us year after year
+				</span>
+			</div>
+		</div>
+
+	</div> <!-- /container -->
+</div> <!-- /section -->
+
+<!-- Testimonials -->
+<div class="section section-quotes section-pad">
+	<div class="container">
+		<div class="content row">
+
+			<div class="col-md-offset-2 col-md-8 center">
+				<h5 class="heading-sm-lead">The People Say</h5>
+				<h2 class="heading-section">Testimonials</h2>
+			</div>
+			<div class="gaps"></div>
+			<div class="testimonials">
+				<div id="testimonial" class="quotes-slider col-md-8 col-md-offset-2">
+					<div class="owl-carousel loop has-carousel" data-items="1" data-loop="true" data-dots="true"
+						data-auto="true">
+						<div class="item">
+							<!-- Each Quotes -->
+							<div class="quotes">
+								<div class="quotes-text center">
+									<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+										doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+										veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim
+										ipsam.</p>
+								</div>
+								<div class="profile">
+									<img src="static/image/profile-img.jpg" alt="">
+									<h5>Maria jaqline</h5>
+									<h6>CEO, Company Name</h6>
+								</div>
+							</div>
+							<!-- End Quotes -->
+						</div>
+						<!-- End Slide -->
+						<!-- Each Slide -->
+						<div class="item">
+							<!-- Each Quotes -->
+							<div class="quotes">
+								<div class="quotes-text center">
+									<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+										doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+										veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+										ipsam.</p>
+								</div>
+								<div class="profile">
+									<img src="static/image/profile-img.jpg" alt="">
+									<h5>Maria jaqline</h5>
+									<h6>CEO, Company Name</h6>
+								</div>
+							</div>
+							<!-- End Quotes -->
+						</div>
+					</div>
+					<!-- End Slide -->
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- End Section -->
+
+<!-- Content -->
+<div class="section section-contents section-pad has-bg fixed-bg light bg-alternet">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 pad-r res-m-bttm">
+				<h2 class="heading-lead">FinanceCorp team provide independent advice based on established
+					research methods.</h2>
+			</div>
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-sm-6 res-s-bttm">
+						<div class="icon-box style-s4 photo-plx-full">
+							<em class="fa fa-bar-chart-o" aria-hidden="true"></em>
+						</div>
+						<h4>Experienced</h4>
+						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusan.</p>
+					</div>
+					<div class="col-sm-6">
+						<div class="icon-box style-s4">
+							<em class="fa fa-users" aria-hidden="true"></em>
+						</div>
+						<h4>Vibrant</h4>
+						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusan.</p>
+					</div>
+					<div class="gaps size-lg"></div>
+					<div class="col-sm-6 res-s-bttm">
+						<div class="icon-box style-s4">
+							<em class="fa fa-credit-card" aria-hidden="true"></em>
+						</div>
+						<h4>Professional</h4>
+						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusan.</p>
+					</div>
+					<div class="col-sm-6">
+						<div class="icon-box style-s4">
+							<em class="fa fa-trademark" aria-hidden="true"></em>
+						</div>
+						<h4>Trademarks</h4>
+						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusan.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section-bg imagebg"><img src="static/image/plx-full.jpg" alt=""></div>
+</div>
+<!-- End Content -->
+<!-- Teams -->
+<div class="section section-teams section-pad bdr-bottom">
+	<div class="container">
+		<div class="content row">
+
+			<div class="col-md-offset-2 col-md-8 center">
+				<h5 class="heading-sm-lead">The Team</h5>
+				<h2 class="heading-section">Our Advisors</h2>
+			</div>
+			<div class="gaps"></div>
+			<div class="team-member-row row">
+				<div class="col-md-3 col-sm-6 col-xs-6 even">
+					<!-- Team Profile -->
+					<div class="team-member">
+						<div class="team-photo">
+							<img alt="" src="static/image/team-a.jpg">
+						</div>
+						<div class="team-info center">
+							<h4 class="name">Robert Miller</h4>
+							<p class="sub-title">Managing Director &amp; CEO</p>
+						</div>
+					</div>
+					<!-- Team #end -->
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-6 odd">
+					<!-- Team Profile -->
+					<div class="team-member">
+						<div class="team-photo">
+							<img alt="" src="static/image/team-b.jpg">
+						</div>
+						<div class="team-info center">
+							<h4 class="name">Stephen Everett</h4>
+							<p class="sub-title">Chief Financial Officer</p>
+						</div>
+					</div>
+					<!-- Team #end -->
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-6 even">
+					<!-- Team Profile -->
+					<div class="team-member">
+						<div class="team-photo">
+							<img alt="" src="static/image/team-c.jpg">
+						</div>
+						<div class="team-info center">
+							<h4 class="name">Philip Hennessy</h4>
+							<p class="sub-title">Senior Tax Specialist</p>
+						</div>
+					</div>
+					<!-- Team #end -->
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-6 odd">
+					<!-- Team Profile -->
+					<div class="team-member">
+						<div class="team-photo">
+							<img alt="" src="static/image/team-d.jpg">
+						</div>
+						<div class="team-info center">
+							<h4 class="name">Robert Miller</h4>
+							<p class="sub-title">Chief Financial Advisor</p>
+						</div>
+					</div>
+					<!-- Team #end -->
+				</div>
+			</div><!-- TeamRow #end -->
+		</div>
+	</div>
+</div>
+<!-- End Section -->
+<!-- Latest News -->
+<div class="section section-news section-pad">
+	<div class="container">
+		<div class="content row">
+
+			<h5 class="heading-sm-lead center">Latest News</h5>
+			<h2 class="heading-section center">Our Financial Updates</h2>
+
+			<div class="row">
+				<!-- Blog Post Loop -->
+				<div class="blog-posts">
+					<div class="post post-loop  col-md-4">
+						<div class="post-thumbs">
+							<a href="news-details.html"><img alt="" src="static/image/post-thumb-a.jpg"></a>
+						</div>
+						<div class="post-entry">
+							<div class="post-meta"><span class="pub-date">15, Aug 2017</span></div>
+							<h2><a href="news-details.html">Income Increase Shows the Recovery Is Very Much Real</a>
+							</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor
+								incididunt laboris nisi ut aliquip ex ea commodo consequat...</p>
+							<a class="btn btn-alt" href="#">Read More</a>
+						</div>
+					</div>
+					<div class="post post-loop col-md-4">
+						<div class="post-thumbs">
+							<a href="news-details.html"><img alt="" src="static/image/post-thumb-b.jpg"></a>
+						</div>
+						<div class="post-entry">
+							<div class="post-meta"><span class="pub-date">04, Jul 2017</span></div>
+							<h2><a href="news-details.html">An Economics Nobel awarded for Examining Reality</a>
+							</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor
+								incididunt laboris nisi ut aliquip ex ea commodo consequat...</p>
+							<a class="btn btn-alt" href="#">Read More</a>
+						</div>
+					</div>
+					<div class="post post-loop col-md-4">
+						<div class="post-thumbs">
+							<a href="news-details.html"><img alt="" src="static/image/post-thumb-c.jpg"></a>
+						</div>
+						<div class="post-entry">
+							<div class="post-meta"><span class="pub-date">26, Dec 2016</span></div>
+							<h2><a href="news-details.html">Maybe Supply-Side Economics Deserves a Second Look</a>
+							</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor
+								incididunt laboris nisi ut aliquip ex ea commodo consequat...</p>
+							<a class="btn btn-alt" href="#">Read More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- End Section -->
+
+<!-- Client logo -->
+<div class="section section-logos section-pad-sm bg-light bdr-top">
+	<div class="container">
+		<div class="content row">
+
+			<div class="owl-carousel loop logo-carousel style-v2">
+				<div class="logo-item"><img alt="" width="190" height="82" src="static/image/cl-logo1-w.png"></div>
+				<div class="logo-item"><img alt="" width="190" height="82" src="static/image/cl-logo2-w.png"></div>
+				<div class="logo-item"><img alt="" width="190" height="82" src="static/image/cl-logo3-w.png"></div>
+				<div class="logo-item"><img alt="" width="190" height="82" src="static/image/cl-logo4-w.png"></div>
+				<div class="logo-item"><img alt="" width="190" height="82" src="static/image/cl-logo5-w.png"></div>
+				<div class="logo-item"><img alt="" width="190" height="82" src="static/image/cl-logo6-w.png"></div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- End Section -->
+
+<!-- Call Action -->
+<div class="call-action cta-small has-bg bg-primary" style="background-image: url('/static/image/plx-cta.jpg');">
+	<div class="cta-block">
+		<div class="container">
+			<div class="content row">
+				<div class="cta-sameline">
+					<h2>Have any Question?</h2>
+					<p style="color: white;">We're here to help. Send us an email or call us at +012-345-6789. Please
+						feel free to contact
+						our expert.</p>
+					<a class="btn btn-alt" href="#">Contact Us</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Section -->
+{% include 'footer.html' %}
