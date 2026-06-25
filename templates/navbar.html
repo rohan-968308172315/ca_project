@@ -10,7 +10,7 @@
 	<link rel="icon" href="image/favicon.png" type="image/png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/vendor.bundle.css' %}">
 	<link id="style-css" rel="stylesheet" type="text/css" href="{% static 'css/stylec64e.css' %}">
-	
+
 </head>
 
 <body class="site-body style-v1">
@@ -49,7 +49,7 @@
 			<div class="container">
 				<!-- Logo -->
 				<a class="navbar-brand" href="/">
-					<img class="logo logo-dark"  src="{% static 'image/ca_logo.png' %}" >
+					<img class="logo logo-dark" src="{% static 'image/ca_logo.png' %}">
 				</a>
 				<!-- #end Logo -->
 				<div class="navbar-header">
@@ -64,31 +64,40 @@
 				<!-- MainNav -->
 				<nav class="navbar-collapse collapse" id="mainnav">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="/">Home</a>
+						<li class="{% if request.path == '/' %}active{% endif %}">
+							<a href="{% url 'index' %}">Home</a>
 						</li>
-						<li class="dropdown"><a href="/about_us">About us <b class="caret"></b></a>
+
+						<li
+							class="dropdown {% if request.path == '/about_us/' or request.path == '/faqs/' or request.path == '/teams/' or request.path == '/gallery/' %}active{% endif %}">
+							<a href="{% url 'about_us' %}">
+								About us <b class="caret"></b>
+							</a>
 							<ul class="dropdown-menu">
-								<li><a href="/faqs">FAQ's</a></li>
-								<li><a href="/teams">Teams</a></li>
-								<li><a href="/gallery">Gallery <span class="label label-info">New</span></a></li>
+								<li><a href="{% url 'faqs' %}">FAQ's</a></li>
+								<li><a href="{% url 'teams' %}">Teams</a></li>
+								<li><a href="{% url 'gallery' %}">Gallery</a></li>
 							</ul>
 						</li>
-						<li class="dropdown">
-							<a href="/service" class="dropdown-toggle">Services 
-								<!-- <b class="caret"></b> -->
-							</a>
-							<!-- <ul class="dropdown-menu">
-								<li><a href="service.html">Services List</a></li>
-								<li><a href="service-alter.html">Services List - Alter</a></li>
-								<li><a href="service-single.html">Services Single</a></li>
-								<li><a href="service-single-alter.html">Services Single - Alter</a></li>
-							</ul> -->
+
+						<li class="{% if request.path == '/service/' %}active{% endif %}">
+							<a href="{% url 'service' %}">Services</a>
 						</li>
-						<li><a href="/testimonial">Testimonial</a></li>
-						<li><a href="/blog">Blog</a></li>
-						<li><a href="/contact">Contact</a></li>
-						<li class="quote-btn"><button type="button" class="btn btn-demo" data-toggle="modal" data-target="#contactModal">Inquiry</button></li>
-						
+
+						<li class="{% if request.path == '/testimonial/' %}active{% endif %}">
+							<a href="{% url 'testimonial' %}">Testimonial</a>
+						</li>
+
+						<li class="{% if request.path == '/blog/' %}active{% endif %}">
+							<a href="{% url 'blog' %}">Blog</a>
+						</li>
+
+						<li class="{% if request.path == '/contact/' %}active{% endif %}">
+							<a href="{% url 'contact' %}">Contact</a>
+						</li>
+						<li class="quote-btn"><button type="button" class="btn btn-demo" data-toggle="modal"
+								data-target="#contactModal">Inquiry</button></li>
+
 					</ul>
 				</nav>
 				<!-- #end MainNav -->
@@ -96,7 +105,7 @@
 		</div>
 		<!-- #end Navbar -->
 		<!-- Banner/Slider -->
-		
+
 		<!-- #end Banner/Slider -->
 	</header>
 	<!-- End Header -->
